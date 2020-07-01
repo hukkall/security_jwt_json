@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gukki.mapper.UserRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gukki.entity.UserRole">
+        <id column="ID" property="id" />
+        <result column="USER_ID" property="userId" />
+        <result column="ROLE_ID" property="roleId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID, ROLE_ID, ID
+    </sql>
+    <select id="getRoleByID" resultType="com.gukki.entity.Role" parameterType="long">
+        SELECT
+            role.ROLE_ID,
+            role.ROLE_NAME
+        FROM
+            role
+                LEFT JOIN
+            user_role
+            ON
+                role.ROLE_ID = user_role.ROLE_ID
+        WHERE
+            user_role.USER_ID = #{id}
+    </select>
+
+</mapper>

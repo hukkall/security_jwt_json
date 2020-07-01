@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gukki.mapper.PermissionRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gukki.entity.PermissionRole">
+        <result column="PREMISSION_ID" property="premissionId" />
+        <result column="ROLE_ID" property="roleId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PREMISSION_ID, ROLE_ID
+    </sql>
+    <select id="getPremissionByID" resultType="com.gukki.entity.Permission">
+        SELECT
+            premission.PERMISSION
+        FROM
+            permission_role
+                LEFT JOIN
+            user_role
+            ON
+                permission_role.ROLE_ID = user_role.ROLE_ID
+                LEFT JOIN
+            premission
+            ON
+                permission_role.PREMISSION_ID = premission.ID
+        WHERE
+            user_role.ID =#{id}
+    </select>
+
+</mapper>

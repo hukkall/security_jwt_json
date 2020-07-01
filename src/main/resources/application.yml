@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/boot_test?useSSL=true&serverTimezone=GMT
+    username: root
+    password: A7#glEjb%2EkD8sv
+jwt:
+  secret: just4test
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+
